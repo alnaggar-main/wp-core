@@ -1,0 +1,39 @@
+{
+	"name": "alnaggar-main/wp-multitenant",
+	"description": "Composer setup for a WordPress Multi Tenant environment",
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"require": {
+		"php": "^7.4",
+		"composer/installers": "1.*",
+		"johnpbloch/wordpress": "*",
+		"vlucas/phpdotenv": "3.4.0",
+		"wpackagist-theme/twentytwentyone": "@stable",
+		"wpackagist-plugin/query-monitor": "*"
+	},
+	"repositories": [
+		{
+			"type": "composer",
+			"url": "https://wpackagist.org"
+		}
+
+	],
+	"extra": {
+		"wordpress-install-dir": "app/stable",
+		"installer-paths": {
+			"assets/mu-plugins/{$name}/": [
+				"type:wordpress-muplugin"
+			],
+			"assets/plugins/{$name}/": [
+				"type:wordpress-plugin"
+			],
+			"assets/themes/{$name}/": [
+				"type:wordpress-theme"
+			]
+		}
+	},
+	"scripts": {
+		"post-install-cmd": "bash scripts/composer.sh",
+		"post-update-cmd": "bash scripts/composer.sh"
+	}
+}
